@@ -29,7 +29,7 @@ export async function generateImage(
     ctx.fillRect(0, 0, width, height)
 
     // set font paramaters
-    var fnt = PImage.registerFont('C:/Windows/Fonts/Arial.ttf', 'Arial Narrow')
+    var fnt = PImage.registerFont('C:/Windows/Fonts/ArialN.ttf', 'Arial Narrow')
     fnt.loadSync()
 
     ctx.font = "40pt 'Arial Narrow'"
