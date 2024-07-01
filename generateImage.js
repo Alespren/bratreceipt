@@ -3,7 +3,9 @@ import * as fs from 'fs'
 
 /**
  * Generates a png with the specified text.
- * @param {string} text The text to write to the image
+ * @param {string} headerText Text that appears center align at the top of the image.
+ * @param {string} leftColumnText Left align text
+ * @param {string} rightColumnText Right align text
  * @param {string} outputFile The name of the file for the output image.
  */
 export async function generateImage(
@@ -22,24 +24,22 @@ export async function generateImage(
     ctx.fillStyle = '#8acf00'
     ctx.fillRect(0, 0, 500, 500)
 
-    // add text
+    // set font paramaters
     var fnt = PImage.registerFont('C:/Windows/Fonts/Arial.ttf', 'Arial Narrow')
     fnt.loadSync()
 
     ctx.font = "30pt 'Arial Narrow'"
     ctx.fillStyle = 'black'
-    ctx.textAlign = 'left'
     ctx.textBaseline = 'middle'
 
     // Title text
+    writeTextMultiline(ctx, headerText, 250, 30, 'center')
 
-    var x = 30
-    var y = 70
-    var lineheight = 35
-    var lines = text.split('\n')
+    // Left column
+    writeTextMultiline(ctx, leftColumnText, 30, 125, 'left')
 
-    for (var i = 0; i < lines.length; i++)
-        ctx.fillText(lines[i], x, y + i * lineheight)
+    // Right column
+    writeTextMultiline(ctx, rightColumnText, 470, 125, 'right')
 
     //write to 'out.png'
     PImage.encodePNGToStream(img1, fs.createWriteStream(outputFile))
@@ -49,4 +49,12 @@ export async function generateImage(
         .catch((e) => {
             console.log('there was an error writing')
         })
+}
+
+function writeTextMultiline(ctx, text, x, y, textAlign, lineheight = 35) {
+    ctx.textAlign = textAlign
+    var lines = text.split('\n')
+
+    for (var i = 0; i < lines.length; i++)
+        ctx.fillText(lines[i], x, y + i * lineheight)
 }
