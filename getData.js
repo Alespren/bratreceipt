@@ -9,14 +9,14 @@ import 'dotenv/config'
  * @returns {(string|Array)} An array of tracks.
  */
 export async function getTopTracks(
-  user = 'alespren',
-  period = '1month',
-  limit = '10'
+    user = 'alespren',
+    period = '1month',
+    limit = '10'
 ) {
-  const data = await fetch(
-    `https://ws.audioscrobbler.com/2.0/?method=user.gettoptracks&user=${user}&period=${period}&limit=${limit}&api_key=${process.env.LASTFM_API_KEY}&format=json`
-  )
-  const json = await data.json()
+    const data = await fetch(
+        `https://ws.audioscrobbler.com/2.0/?method=user.gettoptracks&user=${user}&period=${period}&limit=${limit}&api_key=${process.env.LASTFM_API_KEY}&format=json`
+    )
+    const json = await data.json()
 
-  return json.toptracks.track
+    return json.toptracks.track
 }
