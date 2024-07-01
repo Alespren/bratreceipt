@@ -28,7 +28,7 @@ export async function generateImage(
     var fnt = PImage.registerFont('C:/Windows/Fonts/Arial.ttf', 'Arial Narrow')
     fnt.loadSync()
 
-    ctx.font = "30pt 'Arial Narrow'"
+    ctx.font = "20pt 'Arial Narrow'"
     ctx.fillStyle = 'black'
     ctx.textBaseline = 'middle'
 
@@ -36,10 +36,13 @@ export async function generateImage(
     writeTextMultiline(ctx, headerText, 250, 30, 'center')
 
     // Left column
-    writeTextMultiline(ctx, leftColumnText, 30, 125, 'left')
+    writeTextMultiline(ctx, leftColumnText, 25, 125, 'left')
 
     // Right column
-    writeTextMultiline(ctx, rightColumnText, 470, 125, 'right')
+    writeTextMultiline(ctx, rightColumnText, 475, 125, 'right')
+
+    // Footer text
+    writeTextMultiline(ctx, 'last.fm', 250, 475, 'center')
 
     //write to 'out.png'
     PImage.encodePNGToStream(img1, fs.createWriteStream(outputFile))
@@ -51,7 +54,7 @@ export async function generateImage(
         })
 }
 
-function writeTextMultiline(ctx, text, x, y, textAlign, lineheight = 35) {
+function writeTextMultiline(ctx, text, x, y, textAlign, lineheight = 30) {
     ctx.textAlign = textAlign
     var lines = text.split('\n')
 

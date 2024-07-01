@@ -12,7 +12,7 @@ for (let i = 0; i < tracks.length; i++) {
     const track = tracks[i]
 
     leftColumn.push(`${(i + 1).toString().padStart(2, '0')}`)
-    rightColumn.push(track.name)
+    rightColumn.push(`${track.artist.name} - ${track.name}`)
 }
 
 generateImage(
