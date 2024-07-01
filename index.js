@@ -1,6 +1,9 @@
-import * as getData from './getData.js'
+import { getTopTracks } from './getData.js'
+import { generateImage } from './generateImage.js'
 
-const tracks = await getData.getTopTracks()
+const tracks = await getTopTracks()
+
+let outputString = 'Top Monthly Tracks\n\n'
 
 for (let i = 0; i < tracks.length; i++) {
   const track = tracks[i]
@@ -8,7 +11,13 @@ for (let i = 0; i < tracks.length; i++) {
   console.log(
     `${track.playcount} | ${track.name} | ${fancyTimeFormat(track.duration)}`
   )
+
+  outputString = outputString.concat(
+    `${track.playcount} | ${track.name} | ${fancyTimeFormat(track.duration)}\n`
+  )
 }
+
+generateImage(outputString)
 
 function fancyTimeFormat(duration) {
   // Hours, minutes and seconds
