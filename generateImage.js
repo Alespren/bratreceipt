@@ -14,35 +14,37 @@ export async function generateImage(
     rightColumnText,
     outputFile = 'out.png'
 ) {
+    const imageSize = 1000
+
     // make image
-    const img1 = PImage.make(500, 500)
+    const img1 = PImage.make(imageSize, imageSize)
 
     // get canvas context
     const ctx = img1.getContext('2d')
 
     // fill with green
     ctx.fillStyle = '#8acf00'
-    ctx.fillRect(0, 0, 500, 500)
+    ctx.fillRect(0, 0, imageSize, imageSize)
 
     // set font paramaters
     var fnt = PImage.registerFont('C:/Windows/Fonts/Arial.ttf', 'Arial Narrow')
     fnt.loadSync()
 
-    ctx.font = "20pt 'Arial Narrow'"
+    ctx.font = "40pt 'Arial Narrow'"
     ctx.fillStyle = 'black'
     ctx.textBaseline = 'middle'
 
     // Title text
-    writeTextMultiline(ctx, headerText, 250, 30, 'center')
+    writeTextMultiline(ctx, headerText, imageSize / 2, 60, 'center')
 
     // Left column
-    writeTextMultiline(ctx, leftColumnText, 25, 125, 'left')
+    writeTextMultiline(ctx, leftColumnText, 25, 250, 'left')
 
     // Right column
-    writeTextMultiline(ctx, rightColumnText, 475, 125, 'right')
+    writeTextMultiline(ctx, rightColumnText, imageSize - 25, 250, 'right')
 
     // Footer text
-    writeTextMultiline(ctx, 'last.fm', 250, 475, 'center')
+    writeTextMultiline(ctx, 'last.fm', imageSize / 2, imageSize - 50, 'center')
 
     //write to 'out.png'
     PImage.encodePNGToStream(img1, fs.createWriteStream(outputFile))
@@ -54,7 +56,7 @@ export async function generateImage(
         })
 }
 
-function writeTextMultiline(ctx, text, x, y, textAlign, lineheight = 30) {
+function writeTextMultiline(ctx, text, x, y, textAlign, lineheight = 60) {
     ctx.textAlign = textAlign
     var lines = text.split('\n')
 
