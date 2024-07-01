@@ -10,6 +10,7 @@
   "description": "",
   "type": "module",
   "dependencies": {
-    "dotenv": "^16.4.5"
+    "dotenv": "^16.4.5",
+    "pureimage": "^0.4.13"
   }
 }
