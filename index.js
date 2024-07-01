@@ -23,8 +23,6 @@ for (let i = 0; i < tracks.length; i++) {
     rightColumn.push(arr.join('-\n'))
 }
 
-console.log(leftColumn)
-
 generateImage(
     `${username}\nlast month`,
     leftColumn.join('\n'),
