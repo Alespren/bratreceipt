@@ -2,7 +2,7 @@ import { getTopTracks } from './getData.js'
 import { generateImage } from './generateImage.js'
 
 const username = process.argv[2] ?? 'alespren'
-const imageWidth = 1000
+const imageWidth = 800
 const imageHeight = 1100
 
 const tracks = await getTopTracks(username)
@@ -18,7 +18,6 @@ for (let i = 0; i < tracks.length; i++) {
     // if artist + track name are too long, insert new line char
     const maxLineLength = ~~(imageWidth / 21) // estimate how long a line can be
     let re = new RegExp(String.raw`.{1,${maxLineLength}}`, 'g')
-    console.log(re)
     const arr = `${track.artist.name} - ${track.name}`.match(re)
 
     for (let i = 0; i < arr.length; i++) {
