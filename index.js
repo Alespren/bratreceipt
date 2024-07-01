@@ -12,8 +12,18 @@ for (let i = 0; i < tracks.length; i++) {
     const track = tracks[i]
 
     leftColumn.push(`${(i + 1).toString().padStart(2, '0')}`)
-    rightColumn.push(`${track.artist.name} - ${track.name}`)
+
+    // if artist + track name are too long, insert new line char
+    const arr = `${track.artist.name} - ${track.name}`.match(/.{1,40}/g)
+
+    for (let i = 0; i < arr.length; i++) {
+        if (i > 0) leftColumn.push(' ')
+    }
+
+    rightColumn.push(arr.join('-\n'))
 }
+
+console.log(leftColumn)
 
 generateImage(
     `${username}\nlast month`,
