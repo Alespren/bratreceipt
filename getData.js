@@ -13,8 +13,11 @@ export async function getTopTracks(
     period = '1month',
     limit = '10'
 ) {
+    const baseURL =
+        'https://ws.audioscrobbler.com/2.0/?method=user.gettoptracks'
+
     const data = await fetch(
-        `https://ws.audioscrobbler.com/2.0/?method=user.gettoptracks&user=${user}&period=${period}&limit=${limit}&api_key=${process.env.LASTFM_API_KEY}&format=json`
+        `${baseURL}&user=${user}&period=${period}&limit=${limit}&api_key=${process.env.LASTFM_API_KEY}&format=json`
     )
     const json = await data.json()
 
