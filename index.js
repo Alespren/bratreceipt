@@ -20,6 +20,7 @@ for (let i = 0; i < tracks.length; i++) {
     let re = new RegExp(String.raw`.{1,${maxLineLength}}`, 'g')
     const arr = `${track.artist.name} - ${track.name}`.match(re)
 
+    // if there are any linebreaks on the right, insert a empty line on the left so they still match up
     for (let i = 0; i < arr.length; i++) {
         if (i > 0) leftColumn.push(' ')
     }
