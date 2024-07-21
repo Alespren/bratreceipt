@@ -29,7 +29,10 @@ export async function generateImage(
     ctx.fillRect(0, 0, width, height)
 
     // set font paramaters
-    var fnt = PImage.registerFont('C:/Windows/Fonts/ArialN.ttf', 'Arial Narrow')
+    const fnt = PImage.registerFont(
+        'C:/Windows/Fonts/ArialN.ttf',
+        'Arial Narrow'
+    )
     fnt.loadSync()
 
     ctx.font = "40pt 'Arial Narrow'"
@@ -60,8 +63,8 @@ export async function generateImage(
 
 function writeTextMultiline(ctx, text, x, y, textAlign, lineheight = 60) {
     ctx.textAlign = textAlign
-    var lines = text.split('\n')
+    const lines = text.split('\n')
 
-    for (var i = 0; i < lines.length; i++)
+    for (let i = 0; i < lines.length; i++)
         ctx.fillText(lines[i], x, y + i * lineheight)
 }
